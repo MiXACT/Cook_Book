@@ -1,0 +1,16 @@
+cook_book = {}
+
+with open('recipes.txt', 'r') as file:
+	for line in file:
+		dish = []
+		times = int(file.readline())
+		for i in range(times):
+			ingrt = file.readline().split('|')
+			dish_dict = {}
+			dish_dict['ingredient_name'] = ingrt[0].strip()
+			dish_dict['quantity'] = int(ingrt[1].strip())
+			dish_dict['measure'] = ingrt[2].strip()
+			dish.append(dish_dict)
+		cook_book[line.rstrip()] = dish
+		file.readline()
+	print(cook_book)
