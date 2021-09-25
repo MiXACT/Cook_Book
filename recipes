@@ -1,3 +1,12 @@
+def get_shop_list_by_dishes(dishes, person_count):
+	ingrts = {}
+	for dish in dishes:
+		if dish in cook_book:
+			for i in cook_book[dish]:
+				i['quantity'] *= person_count
+				ingrts[i.pop('ingredient_name')] = i
+	return ingrts
+
 cook_book = {}
 
 with open('recipes.txt', 'r') as file:
@@ -13,4 +22,6 @@ with open('recipes.txt', 'r') as file:
 			dish.append(dish_dict)
 		cook_book[line.rstrip()] = dish
 		file.readline()
-	print(cook_book)
+#print(cook_book)
+
+print(get_shop_list_by_dishes(['Запеченный картофель', 'Фахитос', 'Омлет'], 3))
